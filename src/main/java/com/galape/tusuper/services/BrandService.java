@@ -18,7 +18,11 @@ public class BrandService {
     @Transactional
     public void create(String name) throws MiException{
         validate(name);
-        Brand brand = new Brand();
+        Brand brand = brandRepository.findByName(name);
+        if (brand != null) {
+            throw new MiException("La marca ya se encuentra en la base de datos");
+        }
+        brand = new Brand();
         brand.setName(name);
         brandRepository.save(brand);
     }
@@ -30,7 +34,11 @@ public class BrandService {
         if (!resp.isPresent()) {
             throw new MiException("La marca que intenta modificar no existe");
         }
-        Brand brand = resp.get();
+        Brand brand = brandRepository.findByName(name);
+        if (brand != null) {
+            throw new MiException("La marca ya se encuentra en la base de datos");
+        }
+        brand = resp.get();
         brand.setName(name);
         brandRepository.save(brand);
     }
