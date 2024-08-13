@@ -1,8 +1,11 @@
 package com.galape.tusuper.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.galape.tusuper.entities.Brand;
 import com.galape.tusuper.exceptions.MiException;
 import com.galape.tusuper.repositories.BrandRepository;
 import jakarta.transaction.Transactional;
@@ -13,16 +16,47 @@ public class BrandService {
     private BrandRepository brandRepository;
 
     @Transactional
-    public void create(String name){
+    public void create(String name) throws MiException{
+        validate(name);
+        Brand brand = new Brand();
+        brand.setName(name);
+        brandRepository.save(brand);
     }
 
     @Transactional
-    public void modify(Integer id, String name){
-
+    public void modify(Integer id, String name) throws MiException{
+        validate(name);
+        Optional<Brand> resp = brandRepository.findById(id);
+        if (!resp.isPresent()) {
+            throw new MiException("La marca que intenta modificar no existe");
+        }
+        Brand brand = resp.get();
+        brand.setName(name);
+        brandRepository.save(brand);
     }
 
-    public void delete(){
+    @Transactional
+    public void delete(Integer id) throws MiException{
+        Optional<Brand> resp = brandRepository.findById(id);
+        if (!resp.isPresent()) {
+            throw new MiException("La marca que intenta eliminar no existe");
+        }
+        brandRepository.deleteById(id);
+    }
 
+    public Brand findByName(String name) throws MiException{
+        validate(name);
+        Brand brand = brandRepository.findByName(name);
+        if (brand == null) {
+            throw new MiException("La marca que intenta buscar no existe");
+        }
+        return brand;
+    }
+
+    public List<Brand> listAll(){
+        List<Brand> brandList = new ArrayList<>();
+        brandList = brandRepository.findAll();
+        return brandList;
     }
 
     private void validate(String name) throws MiException{
