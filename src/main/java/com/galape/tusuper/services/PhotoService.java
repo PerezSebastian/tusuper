@@ -49,6 +49,14 @@ public class PhotoService {
         }
     }
 
+    public Photo getOne(String id) throws MiException{
+        Optional<Photo> resp = photoRepository.findById(id);
+        if (!resp.isPresent()) {
+            throw new MiException("la foto ingresada no existe");
+        }
+        return resp.get();
+    }
+
     private void validateFile(MultipartFile file) throws MiException {
         if (file == null) {
             throw new MiException("La imagen no puede ser nula");
