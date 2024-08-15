@@ -19,34 +19,39 @@ import com.galape.tusuper.services.CategoryService;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
     @GetMapping("")
-    public String brand(ModelMap model){
+    public String brand(ModelMap model) {
         List<Category> categoryList = categoryService.listAll();
-        model.put("categoryList",categoryList);
+        model.put("categoryList", categoryList);
         return "category/category";
     }
-        @PostMapping("/guardar")
-    public String save(@RequestParam String name, RedirectAttributes redirectAttributes){
+
+    @PostMapping("/guardar")
+    public String save(@RequestParam String name, RedirectAttributes redirectAttributes) {
         try {
             categoryService.create(name.trim());
-            redirectAttributes.addFlashAttribute("exito", "La categoria "+ name +" se guardo exitosamente");
+            redirectAttributes.addFlashAttribute("exito", "La categoria " + name + " se guardo exitosamente");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/categorias";
     }
+
     @PostMapping("/modificar")
-    public String modify(@RequestParam(required = false) Integer id, @RequestParam String name, RedirectAttributes redirectAttributes){
+    public String modify(@RequestParam(required = false) Integer id, @RequestParam String name,
+            RedirectAttributes redirectAttributes) {
         try {
-            categoryService.modify(id, name);
-            redirectAttributes.addFlashAttribute("exito2", "La categoria "+ name +" se modifico exitosamente");
+            categoryService.modify(id, name.trim());
+            redirectAttributes.addFlashAttribute("exito2", "La categoria " + name + " se modifico exitosamente");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error2", e.getMessage());
         }
         return "redirect:/categorias";
     }
+
     @PostMapping("/eliminar")
-    public String modify(@RequestParam(required = false) Integer id, RedirectAttributes redirectAttributes){
+    public String modify(@RequestParam(required = false) Integer id, RedirectAttributes redirectAttributes) {
         try {
             categoryService.delete(id);
             redirectAttributes.addFlashAttribute("exito3", "La categoria se elimino exitosamente");

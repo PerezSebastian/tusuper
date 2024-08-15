@@ -39,16 +39,6 @@ public class SubCategoryService {
     }
 
     @Transactional
-    public void delete(Integer id) throws MiException {
-        validateId(id, "sub-categoría");
-        Optional<SubCategory> resp = subCategoryRepository.findById(id);
-        if (!resp.isPresent()) {
-            throw new MiException("El nombre proporcionado no se encuentra en la base de datos.");
-        }
-        subCategoryRepository.deleteById(id);
-    }
-
-    @Transactional
     public void modify(Integer id, String name, Integer categoryId) throws MiException {
         validate(name);
         validateId(id, "sub-categoría");
@@ -71,6 +61,17 @@ public class SubCategoryService {
         subCategoryRepository.save(subCategory);
     }
 
+    
+    @Transactional
+    public void delete(Integer id) throws MiException {
+        validateId(id, "sub-categoría");
+        Optional<SubCategory> resp = subCategoryRepository.findById(id);
+        if (!resp.isPresent()) {
+            throw new MiException("La sub-categoría proporcionada no se encuentra en la base de datos.");
+        }
+        subCategoryRepository.deleteById(id);
+    }
+    
     public SubCategory findByName(String name) throws MiException {
         validate(name);
         Optional<SubCategory> resp = subCategoryRepository.findByName(name);

@@ -30,7 +30,7 @@ public class Product {
     private Photo photo;
     public Product() {
     }
-    public Product(Integer id, com.galape.tusuper.entities.ProductType productType, Brand brand, String name,
+    public Product(Integer id, ProductType productType, Brand brand, String name,
             Double price, Integer discount, Integer stock, Integer weight, MeasurementType measurementType,
             Photo photo) {
         this.id = id;

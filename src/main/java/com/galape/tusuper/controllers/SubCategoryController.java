@@ -23,36 +23,42 @@ public class SubCategoryController {
     private SubCategoryService subCategoryService;
     @Autowired
     private CategoryService categoryService;
+
     @GetMapping("")
-    public String brand(ModelMap model){
+    public String brand(ModelMap model) {
         List<SubCategory> subCategoryList = subCategoryService.listAll();
-        model.put("subCategoryList",subCategoryList);
+        model.put("subCategoryList", subCategoryList);
         List<Category> categoryList = categoryService.listAll();
-        model.put("categoryList",categoryList);
+        model.put("categoryList", categoryList);
         return "subCategory/subCategory";
     }
-        @PostMapping("/guardar")
-    public String save(@RequestParam String name, @RequestParam Integer idCategory, RedirectAttributes redirectAttributes){
+
+    @PostMapping("/guardar")
+    public String save(@RequestParam String name, @RequestParam Integer idCategory,
+            RedirectAttributes redirectAttributes) {
         try {
-            subCategoryService.create(name.trim(),idCategory);
-            redirectAttributes.addFlashAttribute("exito", "La subcategoria "+ name +" se guardo exitosamente");
+            subCategoryService.create(name.trim(), idCategory);
+            redirectAttributes.addFlashAttribute("exito", "La subcategoria " + name + " se guardo exitosamente");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/subcategorias";
     }
+
     @PostMapping("/modificar")
-    public String modify(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer idCategory, RedirectAttributes redirectAttributes){
+    public String modify(@RequestParam(required = false) Integer id, @RequestParam String name,
+            @RequestParam Integer idCategory, RedirectAttributes redirectAttributes) {
         try {
-            subCategoryService.modify(id, name, idCategory);
-            redirectAttributes.addFlashAttribute("exito2", "La subcategoria "+ name +" se modifico exitosamente");
+            subCategoryService.modify(id, name.trim(), idCategory);
+            redirectAttributes.addFlashAttribute("exito2", "La subcategoria " + name + " se modifico exitosamente");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error2", e.getMessage());
         }
         return "redirect:/subcategorias";
     }
+
     @PostMapping("/eliminar")
-    public String modify(@RequestParam(required = false) Integer id, RedirectAttributes redirectAttributes){
+    public String modify(@RequestParam(required = false) Integer id, RedirectAttributes redirectAttributes) {
         try {
             subCategoryService.delete(id);
             redirectAttributes.addFlashAttribute("exito3", "La subcategoria se elimino exitosamente");
