@@ -2,14 +2,11 @@ package com.galape.tusuper.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.galape.tusuper.entities.Category;
 import com.galape.tusuper.exceptions.MiException;
 import com.galape.tusuper.repositories.CategoryRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
@@ -19,36 +16,29 @@ public class CategoryService {
 
     @Transactional
     public void create(String name) throws MiException{
-
         validate(name);
-
-        Category category = categoryRepository.findByName(name);
-        
-        if(category != null ){
+        Optional<Category> resp = categoryRepository.findByName(name);
+        if (resp.isPresent()) {
             throw new MiException("La Categoria que quiere crear ya exixte");
         }
-
-        category = new Category();
+        Category category = new Category();
         category.setName(name);
         categoryRepository.save(category);
     }
 
     @Transactional
     public void modify(Integer id, String name) throws MiException{
-
         validate(name);
         validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
-
         if(!resp.isPresent()){
             throw new MiException("La Categoria que quiere modificar no existe");
         }
-        Category category = categoryRepository.findByName(name);
-        
-        if(category != null ){
-            throw new MiException("NO puede modificar porque ya existe "+name);
+        Optional<Category> respCategory = categoryRepository.findByName(name);
+        if (respCategory.isPresent()) {
+            throw new MiException("La Categoria que quiere modificar ya existe");
         }
-        category = resp.get();
+        Category category = resp.get();
         category.setName(name);
         categoryRepository.save(category);
     }
@@ -57,7 +47,6 @@ public class CategoryService {
     public void delete(Integer id) throws MiException{
         validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
-
         if(!resp.isPresent()){
             throw new MiException("La Categoria que quiere eliminar no existe");
         }
@@ -69,13 +58,11 @@ public class CategoryService {
     public Category findByName(String name) throws MiException{
 
         validate(name);
-        
-        Category category = categoryRepository.findByName(name);
-
-        if(category == null){
+        Optional<Category> resp = categoryRepository.findByName(name);
+        if (!resp.isPresent()) {
             throw new MiException("La categoria que busca no existe");
         }
-        return category;
+        return resp.get();
     }
     
     public List<Category> listAll(){
