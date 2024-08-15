@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.galape.tusuper.entities.Category;
 import com.galape.tusuper.exceptions.MiException;
@@ -11,6 +12,7 @@ import com.galape.tusuper.repositories.CategoryRepository;
 
 import jakarta.transaction.Transactional;
 
+@Service
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
@@ -35,7 +37,7 @@ public class CategoryService {
     public void modify(Integer id, String name) throws MiException{
 
         validate(name);
-
+        validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
 
         if(!resp.isPresent()){
@@ -53,7 +55,7 @@ public class CategoryService {
 
     @Transactional
     public void delete(Integer id) throws MiException{
-
+        validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
 
         if(!resp.isPresent()){
@@ -90,4 +92,12 @@ public class CategoryService {
         }
     }
 
+    private void validateId(Integer id) throws MiException{
+        if (id < 0) {
+            throw new MiException("Debe ingresar un id valido");
+        }
+        if (id == 0) {
+            throw new MiException("Debe seleccionar una categoria");
+        }
+    }
 }

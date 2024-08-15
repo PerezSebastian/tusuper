@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tusuper: Subcategoria | Galape</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <section>
+        <h1>Subcategorias</h1>
+        <div th:if="${subCategoryList.size()==0}">
+            <p>No hay subcategorias cargadas aun.</p>
+        </div>
+        <ul th:each="subCategory, i: ${subCategoryList}">
+            <li>
+                <p>id: <span th:text="${subCategory.id}"></span> - Nombre: <span th:text="${subCategory.name}"></span> - Categoria: <span th:text="${subCategory.category.name}"></span></p>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Creando subcategoria</h2>
+        <form action="/subcategorias/guardar" method="POST">
+            <input type="text" name="name" id="" placeholder="Nombre de la subcategoria">
+            <select name="idCategory" id="">
+                <option value="0">Seleccionar categoria</option>
+                <option th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <button type="submit">Guardar</button>
+        </form>
+    </section>
+    <section>
+        <div th:if="${error}">
+            <h6>Error!</h6>
+            <p th:text="${error}"></p>
+        </div>
+        <div th:if="${exito}">
+            <h6>Exito!</h6>
+            <p th:text="${exito}"></p>
+        </div>
+    </section>
+    <section>
+        <h2>Modificando subcategoria</h2>
+        <form action="/subcategorias/modificar" method="POST">
+            <select name="id" id="">
+                <option value="0">Seleccionar subcategoria</option>
+                <option th:each="subCategory: ${subCategoryList}" th:value="${subCategory.id}" th:text="${subCategory.name}"></option>
+            </select>
+            <input type="text" name="name" id="" placeholder="Nombre de la subcategoria">
+            <select name="idCategory" id="">
+                <option value="0">Seleccionar categoria</option>
+                <option th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <button type="submit">Guardar</button>
+        </form>
+    </section>
+    <section>
+        <div th:if="${error2}">
+            <h6>Error!</h6>
+            <p th:text="${error2}"></p>
+        </div>
+        <div th:if="${exito2}">
+            <h6>Exito!</h6>
+            <p th:text="${exito2}"></p>
+        </div>
+    </section>
+    <section>
+        <h2>Eliminar subcategoria</h2>
+        <form action="/subcategorias/eliminar" method="POST">
+            <select name="id" id="">
+                <option value="0">Seleccionar subcategoria</option>
+                <option th:each="subCategory: ${subCategoryList}" th:value="${subCategory.id}" th:text="${subCategory.name}"></option>
+            </select>
+            <button type="submit">Eliminar</button>
+        </form>
+    </section>
+    <section>
+        <div th:if="${error3}">
+            <h6>Error!</h6>
+            <p th:text="${error3}"></p>
+        </div>
+        <div th:if="${exito3}">
+            <h6>Exito!</h6>
+            <p th:text="${exito3}"></p>
+        </div>
+    </section>
+</body>
+</html>
