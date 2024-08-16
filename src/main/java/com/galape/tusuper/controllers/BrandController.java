@@ -36,7 +36,7 @@ public class BrandController {
     @PostMapping("/modificar")
     public String modify(@RequestParam(required = false) Integer id, @RequestParam String name, RedirectAttributes redirectAttributes){
         try {
-            brandService.modify(id, name);
+            brandService.modify(id, name.trim());
             redirectAttributes.addFlashAttribute("exito2", "La marca "+ name +" se modifico exitosamente");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error2", e.getMessage());
