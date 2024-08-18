@@ -1,0 +1,13 @@
+/* Normaliza algunos valores por defecto */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* html{
+    font-size: 10px!important; Esto modifica el valor de REM en 10px, que por defecto es 16
+} */
+/* Rooteo de colores y variables utiles */
+:root{
+    --colorPrimary: white;
+}

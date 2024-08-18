@@ -1,5 +1,7 @@
 package com.galape.tusuper.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +12,6 @@ import com.galape.tusuper.entities.SubCategory;
 public interface SubCategoryRepository extends JpaRepository<SubCategory, Integer> {
 
     @Query("SELECT sc FROM SubCategory sc WHERE sc.name = :name")
-    public SubCategory findByName(@Param("name") String name);
+    public Optional<SubCategory> findByName(@Param("name") String name);
     
 }

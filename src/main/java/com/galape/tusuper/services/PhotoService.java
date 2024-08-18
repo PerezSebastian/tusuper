@@ -17,8 +17,10 @@ public class PhotoService {
 
     @Transactional
     public Photo create(MultipartFile file) throws MiException {
-        validateFile(file);
         try {
+            if(file == null || file.isEmpty()){
+                return null;
+            }
             Photo photo = new Photo();
             photo.setMime(file.getContentType());
             photo.setName(file.getName());

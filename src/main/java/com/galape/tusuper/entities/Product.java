@@ -16,7 +16,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    private ProductType ProductType;
+    private ProductType productType;
     @ManyToOne
     private Brand brand;
     private String name;
@@ -30,11 +30,11 @@ public class Product {
     private Photo photo;
     public Product() {
     }
-    public Product(Integer id, com.galape.tusuper.entities.ProductType productType, Brand brand, String name,
+    public Product(Integer id, ProductType productType, Brand brand, String name,
             Double price, Integer discount, Integer stock, Integer weight, MeasurementType measurementType,
             Photo photo) {
         this.id = id;
-        ProductType = productType;
+        this.productType = productType;
         this.brand = brand;
         this.name = name;
         this.price = price;
@@ -51,10 +51,10 @@ public class Product {
         this.id = id;
     }
     public ProductType getProductType() {
-        return ProductType;
+        return productType;
     }
     public void setProductType(ProductType productType) {
-        ProductType = productType;
+        this.productType = productType;
     }
     public Brand getBrand() {
         return brand;
