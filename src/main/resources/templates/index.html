@@ -9,6 +9,32 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <h1>Hola</h1>
+    <section>
+        <h1>Categorias</h1>
+        <div th:if="${categoryList.size()==0}">
+            <p>No hay categorias cargadas aun.</p>
+        </div>
+        <ul th:each="category, i: ${categoryList}">
+            <li>
+                <p>id: <span th:text="${category.id}"></span> - Nombre: <span th:text="${category.name}"></span></p>
+                <div th:if="${category.subCategories.size() == 0}">
+                    <p>No hay datos</p>
+                </div>
+                <div th:if="${category.subCategories.size() != 0}">
+                    <p>Si hay Datos hay datos</p>
+                </div>
+                <ul th:each="subcategory, i: ${category.subCategories}">
+                    <li>
+                        <p>id: <span th:text="${subcategory.id}"></span> - Nombre: <span th:text="${subcategory.name}"></span></p>
+                        <ul th:each="productType, j: ${subcategory.productTypes}">
+                            <li>
+                            <p>id: <span th:text="${productType.id}"></span> - Nombre: <span th:text="${productType.name}"></span></p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
 </body>
 </html>
