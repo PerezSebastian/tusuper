@@ -61,7 +61,6 @@ public class SubCategoryService {
         subCategoryRepository.save(subCategory);
     }
 
-    
     @Transactional
     public void delete(Integer id) throws MiException {
         validateId(id, "sub-categoría");
@@ -71,7 +70,7 @@ public class SubCategoryService {
         }
         subCategoryRepository.deleteById(id);
     }
-    
+
     public SubCategory findByName(String name) throws MiException {
         validate(name);
         Optional<SubCategory> resp = subCategoryRepository.findByName(name);

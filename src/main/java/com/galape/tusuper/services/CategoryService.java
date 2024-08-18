@@ -15,7 +15,7 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     @Transactional
-    public void create(String name) throws MiException{
+    public void create(String name) throws MiException {
         validate(name);
         Optional<Category> resp = categoryRepository.findByName(name);
         if (resp.isPresent()) {
@@ -27,11 +27,11 @@ public class CategoryService {
     }
 
     @Transactional
-    public void modify(Integer id, String name) throws MiException{
+    public void modify(Integer id, String name) throws MiException {
         validate(name);
         validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
-        if(!resp.isPresent()){
+        if (!resp.isPresent()) {
             throw new MiException("La Categoria que quiere modificar no existe");
         }
         Optional<Category> respCategory = categoryRepository.findByName(name);
@@ -44,18 +44,18 @@ public class CategoryService {
     }
 
     @Transactional
-    public void delete(Integer id) throws MiException{
+    public void delete(Integer id) throws MiException {
         validateId(id);
         Optional<Category> resp = categoryRepository.findById(id);
-        if(!resp.isPresent()){
+        if (!resp.isPresent()) {
             throw new MiException("La Categoria que quiere eliminar no existe");
         }
-        
+
         categoryRepository.deleteById(id);
-        
+
     }
 
-    public Category findByName(String name) throws MiException{
+    public Category findByName(String name) throws MiException {
 
         validate(name);
         Optional<Category> resp = categoryRepository.findByName(name);
@@ -64,22 +64,22 @@ public class CategoryService {
         }
         return resp.get();
     }
-    
-    public List<Category> listAll(){
+
+    public List<Category> listAll() {
 
         return categoryRepository.findAll();
     }
 
-    private void validate(String name) throws MiException{
-        if(name == null){
+    private void validate(String name) throws MiException {
+        if (name == null) {
             throw new MiException("El nombre no puede nula");
         }
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             throw new MiException("El nombre no puede esta vacio");
         }
     }
 
-    private void validateId(Integer id) throws MiException{
+    private void validateId(Integer id) throws MiException {
         if (id < 0) {
             throw new MiException("Debe ingresar un id valido");
         }

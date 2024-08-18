@@ -1,7 +1,6 @@
 package com.galape.tusuper.entities;
 
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ public class SubCategory {
     private String name;
     @ManyToOne
     private Category category;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subCategory")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "subCategory")
     private List<ProductType> productTypes;
     public SubCategory() {
     }
@@ -44,5 +43,11 @@ public class SubCategory {
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public List<ProductType> getProductTypes() {
+        return productTypes;
+    }
+    public void setProductTypes(List<ProductType> productTypes) {
+        this.productTypes = productTypes;
     }
 }

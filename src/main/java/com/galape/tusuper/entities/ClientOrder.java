@@ -2,9 +2,7 @@ package com.galape.tusuper.entities;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-
 import com.galape.tusuper.enums.PaymentMethod;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;

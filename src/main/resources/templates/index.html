@@ -10,9 +10,9 @@
 </head>
 <body>
     <section>
-        <h1>Categorias</h1>
-        <div th:if="${categoryList.size()==0}">
-            <p>No hay categorias cargadas aun.</p>
+        <h1>Categorías</h1>
+        <div th:if="${categoryList.size() == 0}">
+            <p>No hay categorías cargadas aún.</p>
         </div>
         <ul th:each="category, i: ${categoryList}">
             <li>
@@ -21,20 +21,20 @@
                     <p>No hay datos</p>
                 </div>
                 <div th:if="${category.subCategories.size() != 0}">
-                    <p>Si hay Datos hay datos</p>
+                    <p>Si hay datos</p>
                 </div>
-                <ul th:each="subcategory, i: ${category.subCategories}">
+                <ul th:each="subcategory, j: ${category.subCategories}">
                     <li>
                         <p>id: <span th:text="${subcategory.id}"></span> - Nombre: <span th:text="${subcategory.name}"></span></p>
-                        <ul th:each="productType, j: ${subcategory.productTypes}">
+                        <ul th:each="productType, k: ${subcategory.productTypes}">
                             <li>
-                            <p>id: <span th:text="${productType.id}"></span> - Nombre: <span th:text="${productType.name}"></span></p>
+                                <p>id: <span th:text="${productType.id}"></span> - Nombre: <span th:text="${productType.name}"></span></p>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
-    </section>
+    </section>    
 </body>
 </html>
