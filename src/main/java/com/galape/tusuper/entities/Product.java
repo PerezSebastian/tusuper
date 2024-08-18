@@ -1,5 +1,7 @@
 package com.galape.tusuper.entities;
 
+import java.util.List;
+
 import com.galape.tusuper.enums.MeasurementType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
