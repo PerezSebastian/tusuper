@@ -9,6 +9,6 @@ import com.galape.tusuper.entities.ClientOrder;
 
 @Repository
 public interface ClientOrderRepository extends JpaRepository<ClientOrder, String> {
-    public List<ClientOrder> findByDate(); //crear
-    public List<ClientOrder> findByPaymentMethod(); //crear
+    //public List<ClientOrder> findByDate(); //crear
+    //public List<ClientOrder> findByPaymentMethod(); //crear
 }
