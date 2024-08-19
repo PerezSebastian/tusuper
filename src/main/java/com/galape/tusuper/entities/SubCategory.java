@@ -17,7 +17,7 @@ public class SubCategory {
     private String name;
     @ManyToOne
     private Category category;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "subCategory")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subCategory")
     private List<ProductType> productTypes;
     public SubCategory() {
     }

@@ -9,32 +9,30 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <section>
-        <h1>Categorías</h1>
-        <div th:if="${categoryList.size() == 0}">
-            <p>No hay categorías cargadas aún.</p>
-        </div>
-        <ul th:each="category, i: ${categoryList}">
+    <header>header</header>
+    <nav>
+        <ul class="category-container" th:each="category, i: ${categoryList}">
             <li>
-                <p>id: <span th:text="${category.id}"></span> - Nombre: <span th:text="${category.name}"></span></p>
-                <div th:if="${category.subCategories.size() == 0}">
-                    <p>No hay datos</p>
+                <a class="category" href="" th:text="${category.name}"></a>
+                <div class="subcategory-container">
+                    <ul th:each="subcategory, j: ${category.subCategories}">
+                        <li>
+                            <a href="" th:text="${subcategory.name}"></a>
+                            <div class="productType-container">
+                                <ul th:each="productType, k: ${subcategory.productTypes}">
+                                    <li>
+                                        <a href="" th:text="${productType.name}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div th:if="${category.subCategories.size() != 0}">
-                    <p>Si hay datos</p>
-                </div>
-                <ul th:each="subcategory, j: ${category.subCategories}">
-                    <li>
-                        <p>id: <span th:text="${subcategory.id}"></span> - Nombre: <span th:text="${subcategory.name}"></span></p>
-                        <ul th:each="productType, k: ${subcategory.productTypes}">
-                            <li>
-                                <p>id: <span th:text="${productType.id}"></span> - Nombre: <span th:text="${productType.name}"></span></p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
         </ul>
-    </section>    
+    </nav>
+    <main>
+    </main>
+    <footer>footer</footer>
 </body>
 </html>
