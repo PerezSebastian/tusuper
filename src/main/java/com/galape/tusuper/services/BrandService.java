@@ -15,12 +15,12 @@ public class BrandService {
     private BrandRepository brandRepository;
 
     @Transactional
-    public void create(String name) throws MiException{
+    public void create(String name) throws MiException {
         validate(name);
         Optional<Brand> respBrand = brandRepository.findByName(name);
         if (respBrand.isPresent()) {
             throw new MiException("La marca ya se encuentra en la base de datos");
-            
+
         }
         Brand brand = new Brand();
         brand.setName(name);
@@ -28,7 +28,7 @@ public class BrandService {
     }
 
     @Transactional
-    public void modify(Integer id, String name) throws MiException{
+    public void modify(Integer id, String name) throws MiException {
         validate(name);
         validateId(id);
         Optional<Brand> resp = brandRepository.findById(id);
@@ -38,7 +38,7 @@ public class BrandService {
         Optional<Brand> respBrand = brandRepository.findByName(name);
         if (respBrand.isPresent()) {
             throw new MiException("La marca ya se encuentra en la base de datos");
-            
+
         }
         Brand brand = resp.get();
         brand.setName(name);
@@ -46,7 +46,7 @@ public class BrandService {
     }
 
     @Transactional
-    public void delete(Integer id) throws MiException{
+    public void delete(Integer id) throws MiException {
         validateId(id);
         Optional<Brand> resp = brandRepository.findById(id);
         if (!resp.isPresent()) {
@@ -55,7 +55,7 @@ public class BrandService {
         brandRepository.deleteById(id);
     }
 
-    public Brand findByName(String name) throws MiException{
+    public Brand findByName(String name) throws MiException {
         validate(name);
         Optional<Brand> resp = brandRepository.findByName(name);
         if (!resp.isPresent()) {
@@ -64,11 +64,11 @@ public class BrandService {
         return resp.get();
     }
 
-    public List<Brand> listAll(){
+    public List<Brand> listAll() {
         return brandRepository.findAll();
     }
 
-    private void validate(String name) throws MiException{
+    private void validate(String name) throws MiException {
         if (name == null) {
             throw new MiException("El nombre de la marca no puede ser nulo");
         }
@@ -77,7 +77,7 @@ public class BrandService {
         }
     }
 
-    private void validateId(Integer id) throws MiException{
+    private void validateId(Integer id) throws MiException {
         if (id < 0) {
             throw new MiException("Debe ingresar un id valido");
         }

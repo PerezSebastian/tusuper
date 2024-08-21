@@ -2,16 +2,13 @@ package com.galape.tusuper.services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.galape.tusuper.entities.ProductType;
 import com.galape.tusuper.entities.SubCategory;
 import com.galape.tusuper.exceptions.MiException;
 import com.galape.tusuper.repositories.ProductTypeRepository;
 import com.galape.tusuper.repositories.SubCategoryRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service

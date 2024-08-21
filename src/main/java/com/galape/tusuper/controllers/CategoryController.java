@@ -15,7 +15,7 @@ import com.galape.tusuper.entities.Category;
 import com.galape.tusuper.services.CategoryService;
 
 @Controller
-@RequestMapping("categorias")
+@RequestMapping("/categorias")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;

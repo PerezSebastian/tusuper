@@ -18,7 +18,7 @@ public class PhotoService {
     @Transactional
     public Photo create(MultipartFile file) throws MiException {
         try {
-            if(file == null || file.isEmpty()){
+            if (file == null || file.isEmpty()) {
                 return null;
             }
             Photo photo = new Photo();
@@ -51,7 +51,7 @@ public class PhotoService {
         }
     }
 
-    public Photo getOne(String id) throws MiException{
+    public Photo getOne(String id) throws MiException {
         Optional<Photo> resp = photoRepository.findById(id);
         if (!resp.isPresent()) {
             throw new MiException("la foto ingresada no existe");

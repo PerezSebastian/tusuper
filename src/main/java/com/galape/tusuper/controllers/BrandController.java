@@ -13,7 +13,7 @@ import com.galape.tusuper.entities.Brand;
 import com.galape.tusuper.services.BrandService;
 
 @Controller
-@RequestMapping("marcas")
+@RequestMapping("/marcas")
 public class BrandController {
     @Autowired
     private BrandService brandService;

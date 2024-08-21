@@ -7,7 +7,84 @@
 /* html{
     font-size: 10px!important; Esto modifica el valor de REM en 10px, que por defecto es 16
 } */
+/* si no configuras esta propiedad, las imagenes dejan siempre un pequeño espacio por debajo entre la imagen y el borde */
+img {
+    vertical-align: bottom;
+}
+ul, ol{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+}
 /* Rooteo de colores y variables utiles */
 :root{
-    --colorPrimary: white;
+    --colorPrimary: #F57E20;
+    --colorSecondary: #007a43;
+    --colorSecondary2: white;
+    --colorSecondary3: black;
 }
+/* Comienzo de estilos */
+header{
+    background-color: blue;
+}
+footer{
+    background-color: blue;
+}
+/* Nav - menu desplegable */
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    background-color: var(--colorPrimary);
+}
+nav a{
+    color: var(--colorSecondary2);
+    white-space: nowrap;
+}
+.category-container{
+    position: relative;
+}
+.category-container:hover{
+    background-color: var(--colorSecondary);
+}
+.category{
+    text-transform: uppercase;
+}
+.category-container>li:hover .subcategory-container{
+    display: block;
+}
+.subcategory-container>ul>li:hover .productType-container{
+    display: block;
+}
+.subcategory-container{
+    background-color: var(--colorPrimary);
+    position: absolute;
+    display: none;
+    min-width: 120%;
+}
+.subcategory-container>ul{
+    position: relative;
+}
+.subcategory-container>ul:hover{
+    background-color: var(--colorSecondary);
+}
+.productType-container{
+    background-color: var(--colorPrimary);
+    position: absolute;
+    display: none;
+    left: 100%;
+    top: 0;
+}
+.productType-container>ul:hover{
+    background-color: var(--colorSecondary);
+}
+/*  */
