@@ -63,8 +63,43 @@ public class ProductService {
         product.setProductType(respProductType.get());
     }
 
-    public void modify() {
+    public void modify(Integer id, String name, Double price, Integer discount, Integer stock, Integer weight, MeasurementType measurementType, Integer productTypeId, Integer brandId, MultipartFile file)  throws MiException{
+        validateId(id, "producto");
+        Optional<Product> resp = productRepository.findById(id);
+        if (!resp.isPresent()) {
+            throw new MiException("El producto proporcionado no se encuentra en la base de datos.");
+        }
+        validate(name, "producto");
+        validatePrice(price);
+        validateDiscount(discount);
+        validateStock(stock);
+        validateWeight(weight);
+        validateId(brandId, "la marca");
+        validateId(productTypeId, "tipo de producto");
 
+        Optional<Brand> respBrand = brandRepository.findById(brandId);
+        if(!respBrand.isPresent()){
+            throw new MiException("La marca ingresada no se encuentra en la base de datos.");
+        }
+        Optional<ProductType> respProductType = productTypeRepository.findById(productTypeId);
+        if(!respProductType.isPresent()){
+            throw new MiException("El tipo de producto ingresado no se encuentra en la base de datos.");
+        }
+        validateDuplicate(name, weight, productTypeId, brandId);
+        Photo photo = photoService.create(file);
+        Product product = resp.get();
+        product.setName(name);
+        product.setPrice(price);
+        product.setDiscount(discount);
+        product.setStock(stock);
+        product.setWeight(weight);
+        product.setMeasurementType(measurementType);
+        product.setProductType(respProductType.get());
+        product.setBrand(respBrand.get());
+        if (photo != null){
+            product.setPhoto(photo);
+        }
+        productRepository.save(product);
     }
 
     public void delete(Integer id) throws MiException{
