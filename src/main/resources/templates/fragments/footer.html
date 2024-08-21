@@ -1,3 +1,134 @@
-<footer th:fragment="footer">
-
+<footer th:fragment="footer (categoryList)">
+  <div>
+    <!-- Logo página -->
+    <a href="">
+      <img
+        src="https://www.lareinaonline.com.ar/Imagenes/LaReinaBlanco.png"
+        alt="Logo"
+      />
+    </a>
+  </div>
+  <div>
+    <div>
+      <h6>
+        Categorías
+      </h6>
+    </div>
+    <div>
+      <ul th:each="category : ${categoryList}">
+        <li>
+          <p th:text="${category.name}"></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h6>
+        Nombre Pagina
+      </h6>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <a href="" target="_blank">
+            <p>Nosotros</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Envios a domicilio</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Nuestras sucursales</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Términos y condiciones</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Trabajá con nosotros</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Contactanos</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h6>
+        Servicio al Cliente
+      </h6>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <a href="" target="_blank">
+            <p>Preguntas Frecuentes</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Promociones Bancarias</p>
+          </a>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>Arrepentimiento de Compra</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h6>
+        Contacto
+      </h6>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <p>Horarios semana</p>
+        </li>
+        <li>
+          <p>Horarios fin de semana</p>
+        </li>
+        <li>
+          <p>telefono</p>
+        </li>
+        <li>
+          <p>email</p>
+        </li>
+        <li>
+          <a href="" target="_blank">
+            <p>url de la pagina</p>
+          </a>
+        </li>
+      </ul>
+      <div>
+        <div>
+          <a href="" target="_blank"><img src="" alt="facebook" /></a>
+        </div>
+        <div>
+          <a href="" target="_blank"><img src="" alt="instagram" /></a>
+        </div>
+        <div>
+          <a href="" target="_blank"><img src="" alt="youtube" /></a>
+        </div>
+        <div>
+          <a href="" target="_blank"><img src="" alt="whatsapp" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
