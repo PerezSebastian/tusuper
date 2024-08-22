@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tusuper | Galape</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/main.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <header th:replace="~{fragments/header.html :: header}"></header>
+    <nav th:replace="~{fragments/nav.html :: nav(${categoryList})}"></nav>
+    <main>
+        <aside class="filter-container">
+            <div>
+                <h2>FILTROS</h2>
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="brand-filter">
+                    <label for="brand-filter">MARCA</label>
+                    <div class="brand-options">
+                        <label><input type="checkbox"> Marca A</label>
+                        <label><input type="checkbox"> Marca B</label>
+                        <label><input type="checkbox"> Marca C</label>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+            <div>
+                <div>
+                    <h5>PRECIO</h5>
+                </div>
+                <div></div>
+            </div>
+            <div>
+                <div>
+                    <h5>ORDENAR</h5>
+                </div>
+                <div></div>
+            </div>
+
+
+            <div class="filters-container2">
+                <h2>FILTROS</h2>
+
+                <!-- Filtro por marca -->
+                <div class="filter-section2">
+                    <input type="checkbox" id="brand-filter2">
+                    <label for="brand-filter2">MARCA</label>
+                    <div class="brand-options2">
+                        <label><input type="checkbox"> Marca A</label>
+                        <label><input type="checkbox"> Marca B</label>
+                        <label><input type="checkbox"> Marca C</label>
+                    </div>
+                </div>
+
+                <!-- Filtro por precio -->
+                <div class="filter-section2">
+                    <h3>PRECIO</h3>
+                    <!-- Aquí puedes agregar opciones de filtro por precio -->
+                </div>
+
+                <!-- Filtro para ordenar productos -->
+                <div class="filter-section2">
+                    <h3>ORDENAR</h3>
+                    <!-- Aquí puedes agregar opciones para ordenar productos -->
+                </div>
+            </div>
+            <div>
+                <ul th:each="brand: ${brandList}">
+                    <li><p th:text="${brand}"></p></li>
+                </ul>
+            </div>
+
+
+        </aside>
+        <section class="productList-container">
+            <div>
+                <h1>Productos</h1>
+            </div>
+            <div class="actualProductType-container">
+                <p><span th:text="${productType?.subCategory?.category?.name}"></span> > <span th:text="${productType?.subCategory?.name}"></span> > <span th:text="${productType?.name}"></span>.</p>
+            </div>
+            <div class="productList">
+                <article th:each="product: ${productList}" class="productList__productCard">
+                    <div class="productCard__img">
+                        <img src="https://www.lareinaonline.com.ar/Fotos/Articulos/NoImagen.jpg" alt="">
+                    </div>
+                    <div>
+                        <div>
+                            <p th:text="${product.name}"></p>
+                        </div>
+                        <div>
+                            <p th:text="${product.price}"></p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="order-column">
+            <div class="order-container">
+                <div>
+                    <p>TU PEDIDO <span></span></p>
+                    <div></div>
+                </div>
+                <div class="order">
+                </div>
+                <div class="total-container">
+                    <div>
+                        <p>TOTAL:</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <a href=""><button>FINALIZAR COMPRA</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer th:replace="~{fragments/footer.html :: footer(${categoryList})}"></footer>
+</body>
+
+</html>

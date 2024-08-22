@@ -1,5 +1,5 @@
 <header th:fragment="header">
-    <div class="logo-container">
+    <div>
         <div>
             <!-- Enlazamos el logo -->
             <a th:href="@{/}">
@@ -7,14 +7,14 @@
             </a>
         </div>
     </div>
-    <div class="search-container">
+    <div>
         <!-- Aquí podrías incluir un formulario de búsqueda -->
         <form th:action="@{/search}" method="POST">
             <input type="text" name="query" placeholder="Buscar...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
-    <div class="order-container">
+    <div>
         <!-- Enlazamos el carrito -->
         <a th:href="@{/cart}">
             <i class="fas fa-shopping-cart"></i>

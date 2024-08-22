@@ -114,6 +114,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> listByProductTypeName(String productTypeName){
+        return productRepository.findByProductTypeName(productTypeName);
+    }
+
+    public List<String> listBrandsByType(String productTypeName){
+        return productRepository.findByBrand(productTypeName);
+    }
+
     private void validate(String name, String msg) throws MiException {
         if (name == null) {
             throw new MiException("El nombre de " + msg + "no puede ser nulo.");

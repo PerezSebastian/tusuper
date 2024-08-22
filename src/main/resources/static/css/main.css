@@ -32,11 +32,24 @@ body{
     --colorSecondary3: black;
 }
 /* Comienzo de estilos */
+
+/* Header */
 header{
-    background-color: blue;
+    background-color: var(--colorSecondary2);
+    display: flex;
+    align-items: center;
+
 }
+header i{
+    color: var(--colorSecondary);
+}
+
 footer{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
     background-color: blue;
+    color: var(--colorSecondary2);
 }
 /* Nav - menu desplegable */
 nav{
@@ -87,4 +100,106 @@ nav a{
 .productType-container>ul:hover{
     background-color: var(--colorSecondary);
 }
-/*  */
+
+/* Contenido principal */
+main{
+    display: flex;
+    color: white;
+}
+.filter-container{
+    background-color: var(--colorSecondary);
+    flex: 1.5;
+}
+.productList-container{
+    background-color: var(--colorPrimary);
+    flex: 6;
+}
+.order-column{
+    background-color: blueviolet;
+    flex: 2.5;
+}
+/*Lista de productos*/
+.productList{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+}
+.productList__productCard{
+    flex: 0.25;
+    background-color: blueviolet;
+    border-radius: 6px;
+    min-width: 150px;
+}
+.productCard__img{
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.productCard__img img{
+    width: 100%;
+    object-fit: cover;
+}
+/*  Orden del cliente*/
+.order-container{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: calc(100vh - 5%);
+}
+.order{
+    background-color: red;
+}
+.total-container{
+    background-color: orange;
+}
+
+/*  Filtros de productos*/
+#brand-filter{
+    display: none;
+}
+
+
+
+
+.filters-container2 {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.filter-section2 {
+    margin-bottom: 15px;
+}
+
+.filter-section2 h3 {
+    margin: 0 0 10px 0;
+}
+
+/* Ocultamos el checkbox */
+input[type="checkbox"] {
+    /* display: none; */
+}
+
+/* Estilos para el label como botón desplegable */
+label {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Ocultar menú desplegable por defecto */
+.brand-options2 {
+    display: none;
+    margin-top: 10px;
+}
+
+/* Mostrar menú cuando el checkbox está seleccionado */
+input[type="checkbox"]:checked ~ .brand-options2 {
+    display: block;
+}
+
+/* Estilos básicos para las marcas */
+.brand-options2 label {
+    display: block;
+    margin-bottom: 5px;
+}

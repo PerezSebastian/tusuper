@@ -1,0 +1,21 @@
+<nav th:fragment="nav (categoryList)">
+    <ul class="category-container" th:each="category, i: ${categoryList}">
+        <li>
+            <a class="category" href="" th:text="${category.name}"></a>
+            <div class="subcategory-container">
+                <ul th:each="subcategory, j: ${category.subCategories}">
+                    <li>
+                        <a href="" th:text="${subcategory.name}"></a>
+                        <div class="productType-container">
+                            <ul th:each="productType, k: ${subcategory.productTypes}">
+                                <li>
+                                    <a th:href="@{/productos/__${productType.name}__}" th:text="${productType.name}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>

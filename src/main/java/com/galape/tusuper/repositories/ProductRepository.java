@@ -17,4 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
     public List<Product> findAllByName(@Param("name") String name);
     @Query("SELECT p FROM Product p WHERE p.name = :name AND p.weight = :weight AND p.productType.id = :productTypeId AND p.brand.id = :brandId")
     public Optional<Product> findDuplicate(@Param("name") String name, @Param("weight") Integer weight, @Param("productTypeId") Integer productTypeId, @Param("brandId") Integer brandId);
+    @Query("SELECT p FROM Product p WHERE p.productType.name = :name")
+    public List<Product> findByProductTypeName(@Param("name") String productTypeName);
+    @Query("SELECT DISTINCT p.brand.name FROM Product p WHERE p.productType.name = :name")
+    public List<String> findByBrand(@Param("name") String productTypeName);
 }
