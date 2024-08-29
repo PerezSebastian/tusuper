@@ -14,114 +14,80 @@
 <body>
     <header th:replace="~{fragments/header.html :: header}"></header>
     <nav th:replace="~{fragments/nav.html :: nav(${categoryList})}"></nav>
+    <aside class="filter-container">
+        <div class="filter__title">
+            <h2>FILTROS</h2>
+        </div>
+        <form class="filters">
+            <div class="filters__brand">
+                <input type="checkbox" id="brand-filter">
+                <label class="label-input clickk min1" for="brand-filter">MARCA</label>
+                <div class="brand-options" th:each="brand: ${brandList}">
+                    <label class="clickk options"><input type="checkbox"><span th:text="${brand}"></span></label>
+                </div>
+            </div>
+            <div class="filters__order">
+                <input type="checkbox" id="order-filter">
+                <label class="label-input clickk" for="order-filter">ORDENAR</label>
+                <div class="order-options">
+                    <label class="clickk options" for="option1"><input type="radio" name="order-group" id="option1">Menor a mayor precio</label>
+                    <label class="clickk options" for="option2"><input type="radio" name="order-group" id="option2">Mayor a menor precio</label>
+                </div>
+            </div>
+            <div class="submit-container">
+                <button class="clickk btn-principal" type="submit">Aplicar filtros</button>
+            </div>
+        </form>
+    </aside>
     <main>
-        <aside class="filter-container">
-            <div>
-                <h2>FILTROS</h2>
-            </div>
-            <div>
-                <div>
-                    <input type="checkbox" id="brand-filter">
-                    <label for="brand-filter">MARCA</label>
-                    <div class="brand-options">
-                        <label><input type="checkbox"> Marca A</label>
-                        <label><input type="checkbox"> Marca B</label>
-                        <label><input type="checkbox"> Marca C</label>
-                    </div>
-                </div>
-                <div></div>
-            </div>
-            <div>
-                <div>
-                    <h5>PRECIO</h5>
-                </div>
-                <div></div>
-            </div>
-            <div>
-                <div>
-                    <h5>ORDENAR</h5>
-                </div>
-                <div></div>
-            </div>
-
-
-            <div class="filters-container2">
-                <h2>FILTROS</h2>
-
-                <!-- Filtro por marca -->
-                <div class="filter-section2">
-                    <input type="checkbox" id="brand-filter2">
-                    <label for="brand-filter2">MARCA</label>
-                    <div class="brand-options2">
-                        <label><input type="checkbox"> Marca A</label>
-                        <label><input type="checkbox"> Marca B</label>
-                        <label><input type="checkbox"> Marca C</label>
-                    </div>
-                </div>
-
-                <!-- Filtro por precio -->
-                <div class="filter-section2">
-                    <h3>PRECIO</h3>
-                    <!-- Aquí puedes agregar opciones de filtro por precio -->
-                </div>
-
-                <!-- Filtro para ordenar productos -->
-                <div class="filter-section2">
-                    <h3>ORDENAR</h3>
-                    <!-- Aquí puedes agregar opciones para ordenar productos -->
-                </div>
-            </div>
-            <div>
-                <ul th:each="brand: ${brandList}">
-                    <li><p th:text="${brand}"></p></li>
-                </ul>
-            </div>
-
-
-        </aside>
         <section class="productList-container">
             <div>
                 <h1>Productos</h1>
             </div>
             <div class="actualProductType-container">
-                <p><span th:text="${productType?.subCategory?.category?.name}"></span> > <span th:text="${productType?.subCategory?.name}"></span> > <span th:text="${productType?.name}"></span>.</p>
+                <p><span class="actualProductType-container__category" th:text="${productType?.subCategory?.category?.name}"></span> > <span
+                        class="actualProductType-container__subcategory" th:text="${productType?.subCategory?.name}"></span> > <span
+                        class="actualProductType-container__subcategory" th:text="${productType?.name}"></span>.</p>
             </div>
             <div class="productList">
                 <article th:each="product: ${productList}" class="productList__productCard">
                     <div class="productCard__img">
                         <img src="https://www.lareinaonline.com.ar/Fotos/Articulos/NoImagen.jpg" alt="">
+                        <a class="productCard__add" href="">AGREGAR</a>
                     </div>
-                    <div>
-                        <div>
+                    <div class="productCard__titles">
+                        <div class="productCard__name">
                             <p th:text="${product.name}"></p>
                         </div>
-                        <div>
-                            <p th:text="${product.price}"></p>
+                        <div class="productCard__price">
+                            <p>$<span th:text="${product.price}"></span></p>
                         </div>
                     </div>
                 </article>
             </div>
         </section>
-        <section class="order-column">
-            <div class="order-container">
-                <div>
-                    <p>TU PEDIDO <span></span></p>
-                    <div></div>
-                </div>
-                <div class="order">
-                </div>
-                <div class="total-container">
-                    <div>
-                        <p>TOTAL:</p>
-                        <p></p>
-                    </div>
-                    <div>
-                        <a href=""><button>FINALIZAR COMPRA</button></a>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
+    <section class="order-column">
+        <div class="order-count-container">
+            <p>TU PEDIDO <span class="order-count">(0)</span></p>
+            <div>
+                <a th:href="@{/cart}">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+        <div class="order">
+        </div>
+        <div class="total-container">
+            <div class="total__price">
+                <p class="total__price-title">TOTAL:</p>
+                <p class="total__price-price"> $ 0,00</p>
+            </div>
+            <div class="total-container__button">
+                <a href=""><button class="clickk btn-principal">FINALIZAR COMPRA</button></a>
+            </div>
+        </div>
+    </section>
     <footer th:replace="~{fragments/footer.html :: footer(${categoryList})}"></footer>
 </body>
 

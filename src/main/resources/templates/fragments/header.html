@@ -1,24 +1,28 @@
 <header th:fragment="header">
-    <div>
-        <div>
+    <div class="header__logo">
+        <div class="logo-container">
             <!-- Enlazamos el logo -->
-            <a th:href="@{/}">
+            <!-- <a th:href="@{/}">
                 <img th:src="@{/img/default/logo_super.png}" alt="Logo de la empresa">
+            </a> -->
+            <a th:href="@{/}">
+                <img src="https://www.lareinaonline.com.ar/imagenes/LaReina.png" alt="Logo de la empresa">
             </a>
         </div>
     </div>
-    <div>
+    <div class="search-container">
         <!-- Aquí podrías incluir un formulario de búsqueda -->
         <form th:action="@{/search}" method="POST">
             <input type="text" name="query" placeholder="Buscar...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
-    <div>
+    <div class="header__order-container">
         <!-- Enlazamos el carrito -->
         <a th:href="@{/cart}">
             <i class="fas fa-shopping-cart"></i>
         </a>
+        <span>0</span>
     </div>
 </header>
 
