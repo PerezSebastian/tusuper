@@ -1,11 +1,13 @@
-<nav th:fragment="nav (categoryList)">
-    <ul class="category-container" th:each="category, i: ${categoryList}">
+<nav id="nav" th:fragment="nav (categoryList)">
+    <a id="nav-button-open" href="#"><i class="fa-solid fa-bars"></i> Menu</a>
+    <a id="nav-button-close" href="#"><i class="fa-solid fa-xmark"></i></a>
+    <ul class="category-container nav__links" th:each="category, i: ${categoryList}">
         <li>
-            <a class="category" href="" th:text="${category.name}"></a>
+            <a class="category" href="#" th:text="${category.name}"></a>
             <div class="subcategory-container">
                 <ul th:each="subcategory, j: ${category.subCategories}">
                     <li>
-                        <a href="" th:text="${subcategory.name}"></a>
+                        <a href="#" th:text="${subcategory.name}"></a>
                         <div class="productType-container">
                             <ul th:each="productType, k: ${subcategory.productTypes}">
                                 <li>

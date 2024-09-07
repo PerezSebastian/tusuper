@@ -57,8 +57,13 @@ footer{
     --colorSecondary3: black;
     --colorSecondary4: #F4F4F4;
 }
-
-
+/* Clase para usar el display none sin necesidad e agregar estilos en linea */
+.show{
+    display: block!important;
+}
+.noshow{
+    display: none!important;
+}
 /* Comienzo de estilos */
 
 /* botones */
@@ -74,7 +79,19 @@ footer{
     background-color: var(--colorSecondary);
     color: var(--colorSecondary2);
 }
-
+.btn-secondary{
+    background-color: transparent;
+    border: 1px solid var(--colorPrimary);
+    border-radius: 50%;
+    color: var(--colorPrimary);
+    padding: 0.1rem 0.3rem;
+    transition: 0.3s ease-in-out all;
+}
+.btn-secondary:hover{
+    cursor: pointer;
+    background-color: var(--colorPrimary);
+    color: var(--colorSecondary2);
+}
 /* Header */
 header{
     background-color: var(--colorSecondary2);
@@ -159,6 +176,12 @@ nav{
     justify-content: space-evenly;
     align-items: start;
     background-color: var(--colorPrimary);
+}
+#nav-button-close{
+    display: none;
+}
+#nav-button-open{
+    display: none;
 }
 nav a{
     color: var(--colorSecondary2);
@@ -270,7 +293,8 @@ main{
 }
 .productList__productCard:hover .productCard__add{
     top: 50%;
-    left: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .productCard__img img{
     width: 100%;
@@ -287,6 +311,7 @@ main{
 }
 /*  Orden del cliente*/
 .order-column{
+    padding-bottom: 1rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
@@ -412,6 +437,30 @@ footer a{
 }
 
 
+/* Orden */
+.order{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0.5rem;
+}
+.order img{
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--colorSecondary);
+}
+.order__productcard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.productcard__cant{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
 /* Media Queries - para hacer responsive la pagina*/
 @media screen and (max-width: 750px) {
     /* estrura mobile */
@@ -426,9 +475,14 @@ footer a{
         "order"
         "footer";
     }
-
     nav{
+        flex-direction: column;
+    }
+    .nav__links{
         display: none;
+    }
+    #nav-button-open{
+        display: block;
     }
     header{
         flex-direction: column;
